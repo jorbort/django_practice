@@ -5,10 +5,10 @@ EXPOSE 8000
 WORKDIR /app
 
 COPY django_start.sh /app
-RUN chmod +x /usr/local/bin/django_start.sh
+RUN chmod +x /app/django_start.sh
 COPY requirements.txt /app
-RUN pip install -r requirements.txt
+
 
 COPY . /app
-ENTRYPOINT ["/usr/local/bin/django_start.sh"]
+ENTRYPOINT ["/app/django_start.sh"]
 

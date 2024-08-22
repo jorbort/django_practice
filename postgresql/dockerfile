@@ -1,0 +1,5 @@
+FROM postgres:16.4-bookworm
+
+EXPOSE 1882
+
+RUN apt-get update && apt-get install -y postgresql-16-postgis-3 postgresql-16-postgis-3-scripts

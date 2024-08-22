@@ -1,0 +1,10 @@
+FROM python:3.12-bookworm
+
+EXPOSE 8000
+
+COPY django_start.sh /usr/local/bin
+
+RUN chmod +x /usr/local/bin/django_start.sh
+
+ENTRYPOINT ["/usr/local/bin/django_start.sh"]
+

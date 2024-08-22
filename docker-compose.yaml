@@ -1,0 +1,10 @@
+services:
+  backend:
+    depend_on:
+      -postrgres
+    container_name: backend
+    build: django/backend/
+    image: backend
+    ports:
+      - "8000:8000"
+    restart: always  

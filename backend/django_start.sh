@@ -2,10 +2,9 @@
 
 
 python3 -m venv .venv && source .venv/bin/activate\
-&& pip install django && pip install psycopg2-binary\
+&& pip install -r requirements.txt\
 
-ls -la 
 cd trascendance
-ls -la
+
 
 python3 manage.py runserver 0.0.0.0:8000

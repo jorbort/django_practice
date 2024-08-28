@@ -1,21 +1,29 @@
 services:
-  postrgres:
-    container_name: postgres
+  postgres:
+    restart: always
     image: postgres
+    container_name: demo-postgres #you can change this
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      - POSTGRES_USER=demo
+      - POSTGRES_PASSWORD=demo
+      - POSTGRES_DB=demo
+      - POSTGRES_PORT=5432
     ports:
       - "5432:5432"
-    restart: always
-    
-  backend:
-    depend_on:
-      -postrgres
-    container_name: backend
-    build: django/backend/
-    image: backend
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: demo-pgadmin #you can change this
+    depends_on:
+      - postgres
     ports:
-      - "8000:8000"
-    restart: always  
+      - "5051:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: root
+      restart: always
+
+volumes:
+  postgres_data:

@@ -3,10 +3,16 @@ services:
     depends_on:
       - postgres
     container_name: backend
-    build: django/backend/
+    build: ./backend/
     image: backend
     ports:
       - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: hello_django_dev
+      POSTGRES_USER: hello_world
+      POSTGRES_PASSWORD: hello_world
     networks:
       - trascendence
     restart: always

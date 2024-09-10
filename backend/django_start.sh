@@ -1,7 +1,6 @@
 #! /bin/bash
 
-if ["$DATABASE" = "postgres"]
-then
+if [ "$DATABASE" = "postgres" ]; then
     echo "Waiting for postgres..."
 
     while ! nc -z $DATABASE_HOST $SQL_PORT; do
@@ -19,4 +18,4 @@ cd trascendance
 python3 manage.py flush --no-input
 python3 manage.py migrate
 
-gunicorn hello_django.wsgi:application --bind 0.0.0.0:8000
+gunicorn trascendance.wsgi:application --bind 0.0.0.0:8000

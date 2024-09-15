@@ -16,7 +16,7 @@ python3 -m venv .venv && source .venv/bin/activate\
 cd trascendance
 
 python3 manage.py flush --no-input
-python3 manage.py makemigrations
+python3 manage.py makemigrations hello_world
 python3 manage.py migrate
-python3 testenv.py
+#python3 testenv.py
 gunicorn trascendance.wsgi:application --bind 0.0.0.0:8000

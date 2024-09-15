@@ -18,5 +18,6 @@ cd trascendance
 python3 manage.py flush --no-input
 python3 manage.py makemigrations hello_world
 python3 manage.py migrate
+python3 manage.py collectstatic --no-input
 #python3 testenv.py
 gunicorn trascendance.wsgi:application --bind 0.0.0.0:8000

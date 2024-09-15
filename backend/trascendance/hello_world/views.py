@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.hashers import make_password
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import User
@@ -22,7 +23,10 @@ def getUser(request,pk):
 
 @api_view(['Post'])
 def addUser(request):
-	serializer=UserSerializer(data=request.data)
+	data = request.data.copy()
+	if 'password' in data:
+		data['password'] = make_password(data['password'])
+	serializer=UserSerializer(data=data)
 	if serializer.is_valid():
 		serializer.save()
 	return Response(serializer.data)

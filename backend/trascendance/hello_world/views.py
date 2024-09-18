@@ -24,8 +24,8 @@ def getUser(request,pk):
 @api_view(['Post'])
 def addUser(request):
 	data = request.data.copy()
-	if 'password' in data:
-		data['password'] = make_password(data['password'])
+	# if 'password' in data:
+	# 	data['password'] = make_password(data['password'])
 	serializer=UserSerializer(data=data)
 	if serializer.is_valid():
 		serializer.save()
